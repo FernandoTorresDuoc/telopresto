@@ -12,12 +12,12 @@ export class AutenticacionService {
 
   constructor(private http: HttpClient,  public alertController:AlertController, public navController: NavController) { }
 
-  rutaBase: string = 'http://localhost:3001';
+  rutaBase: string = 'http://localhost:3001/';
   public usuarioAuth : string;
   public claveAuth : string;
 
   validarLogin(usuario, contrasena) {
-    return this.http.get<Usuario>(this.rutaBase + '/run=' + usuario + '&pass=' + contrasena)
+    return this.http.get<Usuario>(this.rutaBase + 'validarUsuario/run=' + usuario + '&pass=' + contrasena)
       .pipe( map(auth => {
         if(auth !== undefined){
           console.log(usuario + contrasena);
