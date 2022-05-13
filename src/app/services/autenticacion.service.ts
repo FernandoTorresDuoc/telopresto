@@ -12,7 +12,7 @@ export class AutenticacionService {
 
   constructor(private http: HttpClient,  public alertController:AlertController, public navController: NavController) { }
 
-  rutaBase: string = 'http://localhost:3001';
+  rutaBase: string = 'http://localhost:3001/';
   public usuarioAuth : string;
   public claveAuth : string;
 
