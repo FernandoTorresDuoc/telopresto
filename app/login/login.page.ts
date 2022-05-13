@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController, NavController, ToastController } from '@ionic/angular';
+import { AutenticacionService } from '../services/autenticacion.service';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,30 +9,42 @@ import { ActionSheetController, AlertController, NavController, ToastController 
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  modeloUsuario: string;
-  modeloContrasena: string;
   mensajeError: string;
-  usuario: string ='G';
-  password: string ='V';
+
+  usuarioForm = {
+    usuario: '',
+    password: ''
+  }
   constructor(
     public actionSheetController: ActionSheetController,
     public alertController: AlertController,
     public navController: NavController,
-    private toastConstroller: ToastController
+    private toastController: ToastController,
+    private Autenticacion: AutenticacionService,
+    private Router: Router
   ) { }
 
   ngOnInit() {
   }
 
   validarUsuario() {
-    if (this.modeloUsuario === this.usuario && this.modeloContrasena === this.password) {
-      this.navController.navigateRoot('/tabs'/** , { queryParams: { 'nombre': 'Giovanni' } }*/);
-      // {'nombre': this.modeloNombre} -- Entrega un parámetro de un objeto
-      this.mensajeError = '';
-    } else {
-      //console.log('Credenciales Invalidas')
-      this.mostrarAlerta();
+    let usuario= this.usuarioForm.usuario;
+    let contrasena = this.usuarioForm.password;
+    if(usuario=="" || contrasena==""){
+      this.presentToastWithOptions('Campos vacíos','Debe ingresar un usuario y una contraseña.');
+    } else{
+      this.Autenticacion.validarLogin(usuario, contrasena).subscribe( data =>{
+        console.log(data.id_usuario)
+        if(data.id_usuario > 0){
+          this.presentToast('Bienvenido!');
+          this.navController.navigateRoot(['inicio']);
+        }else{
+          console.log('Login nok')
+        }
+      });
     }
+    
+
   }
   mostrarAlerta() {
     this.presentAlert();
@@ -47,4 +61,37 @@ export class LoginPage implements OnInit {
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
+
+  async presentToastWithOptions(header, message) {
+    const toast = await this.toastController.create({
+      message: message,
+      icon: 'information-circle',
+      position: 'top',
+      buttons: [
+       {
+          text: 'Aceptar',
+          role: 'cancel',
+          handler: () => {
+
+          }
+        }
+      ]
+    });
+    await toast.present();
+
+    const { role } = await toast.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+
+
+  
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      position: 'bottom',
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
+
 }
