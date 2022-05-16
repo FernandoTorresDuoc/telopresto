@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>TeLoPrestoApp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-card class="ion-margin"  class="cardtransparente" color="primary"> 
+    <br><h1 >Bienvenid@, ingresa tus credenciales</h1> <br>
+    <img src="/assets/img/rroom100.png" width="60%">
+  </ion-card>
+  <ion-card class="ion-margin" class="cardtransparente" color="secondary">
+    <ion-item class="cardtransparente" >
+      <ion-label class="ion-margin" position="floating" color="primary">USUARIO</ion-label>
+      <ion-input [(ngModel)]="usuarioForm.usuario"></ion-input>
+    </ion-item>
+    <ion-item class="cardtransparente">
+      <ion-label class="ion-margin" position="floating" color="primary">CONTRASEÑA</ion-label>
+      <ion-input type="password" [(ngModel)]="usuarioForm.password"></ion-input>
+    </ion-item>
+    <ion-button expand="block" color="warning" class="ion-margin" position="floating" size="large" (click)="validarUsuario()">INGRESAR</ion-button>
+  </ion-card>
+</ion-content>
+<!-- <ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 1</ion-title>
+    </ion-toolbar>
+  </ion-header> -->

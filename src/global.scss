@@ -24,3 +24,26 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+ion-content {
+    --background: url(/assets/img/tiles.jpg) repeat 50% 50%;
+}
+
+ion-card {
+    --background-color: rgba(100,100,100,0.3);
+    --class: "ion-margin"; 
+    --class: "ion-text-center";
+    --position: "floating"
+}
+
+.cardtransparente {
+    background: rgba(50,50,50,0.5);
+    text-align: center;
+}
+
+ion-tab-button {
+    --background: #333333;
+    --color:#999999;
+    --color-selected: red;
+    --ripple-color: #777777;
+  }
