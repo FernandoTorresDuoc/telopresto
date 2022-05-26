@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController, NavController, ToastController } from '@ionic/angular';
 import { AutenticacionService } from '../services/autenticacion.service';
 import { NavigationExtras, Router } from '@angular/router';
+ 
 
 @Component({
   selector: 'app-login',
@@ -21,11 +22,12 @@ export class LoginPage implements OnInit {
     public navController: NavController,
     private toastController: ToastController,
     private Autenticacion: AutenticacionService,
-    private Router: Router
+    private Router: Router,
   ) { }
 
   ngOnInit() {
   }
+  
 
   validarUsuario() {
     let usuario= this.usuarioForm.usuario;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AutenticacionService } from '../services/autenticacion.service';
 import { ActionSheetController, AlertController, NavController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar',
@@ -28,11 +29,26 @@ export class RegistrarPage implements OnInit {
   constructor(private Autenticacion: AutenticacionService, 
     public actionSheetController: ActionSheetController,
     public alertController: AlertController,
-    private toastController: ToastController) { }
+    private toastController: ToastController,
+    private router: Router) { }
 
   ngOnInit() {
+    //this.cambiarContrasena();
   }
-
+  /*
+  cambiarContrasena(){ //Acá realizar la llamada y enviar los parámetros para validar el código
+    this.Autenticacion.cambiarContrasena('imontes227@gmail.com','1023','nuevapassword').subscribe(
+      data=>{
+        console.log(data[0][0]._resultado_out);
+        if(data[0][0]._resultado_out===0){
+          console.log('Cambio clave-> correcto,  codigo:',data[0][0]._resultado_out);
+        }else{
+          console.log('Cambio clave-> incorrecto,  codigo:', data[0][0]._resultado_out);
+        }
+      }
+    )
+  }
+  */
   registrarUsuario(){
     let id_usuario = 0;
     let run = this.usuarioFormCrear.run;
@@ -57,8 +73,10 @@ export class RegistrarPage implements OnInit {
         data=>{
         }
       )
+      this.router.navigate(['login'])
 
     }
+    
 
   }
 

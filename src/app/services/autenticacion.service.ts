@@ -34,4 +34,8 @@ export class AutenticacionService {
      return this.http.post(this.rutaBase+ 'registrar',{id_usuario, rut, dv, pri_nom, seg_nom, pri_ap, seg_ap, direccion, id_comuna, mail, password, sexo, rol, estado});
   }  
 
+  cambiarContrasena( mail, codigoOtp, nuevaClave){
+    return this.http.post(this.rutaBase+ 'cambiarContrasena/',{mail, codigoOtp, nuevaClave})
+ }  
+
 }
