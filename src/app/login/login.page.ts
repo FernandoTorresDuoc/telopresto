@@ -37,12 +37,13 @@ export class LoginPage implements OnInit {
       this.presentToastWithOptions('Atención!','Debe ingresar un usuario y una contraseña.');
     } else{
       this.Autenticacion.validarLogin(usuario, contrasena).subscribe( data =>{
+        console.log(data);
         console.log(data.id_usuario)
-        if(data.id_usuario > 0){
+        if(data[0].id_usuario > 0){
 
           this.presentToast('Bienvenido!');
           this.navController.navigateRoot(['inicio']);
-        }else{
+        }else if(data[0].id_usuario === null ){
           console.log('Login nok')
         }
       });

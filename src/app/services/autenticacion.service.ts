@@ -4,6 +4,7 @@ import { AlertController, NavController } from '@ionic/angular';
 import { Respuesta } from '../interfaces/Respuesta';
 import { map, withLatestFrom } from 'rxjs/operators';
 import { Usuario } from '../interfaces/usuario';
+import { Comuna } from '../interfaces/comuna';
 
 @Injectable({
   providedIn: 'root'
@@ -18,17 +19,23 @@ export class AutenticacionService {
   
   
 
+  // validarLogin(usuario, contrasena) {
+  //   return this.http.get<Usuario>(this.rutaBase + 'validarUsuario/run=' + usuario + '&pass=' + contrasena)
+  //     .pipe( map(auth => {
+  //       if(auth !== undefined){
+  //         console.log(usuario + contrasena);
+  //         this.usuarioAuth=usuario;
+  //         this.claveAuth=contrasena;
+  //      }
+  //     return auth;
+  //    }));
+  //   }
+
   validarLogin(usuario, contrasena) {
-    return this.http.get<Usuario>(this.rutaBase + 'validarUsuario/run=' + usuario + '&pass=' + contrasena)
-      .pipe( map(auth => {
-        if(auth !== undefined){
-          console.log(usuario + contrasena);
-          this.usuarioAuth=usuario;
-          this.claveAuth=contrasena;
-       }
-      return auth;
-     }));
+    return this.http.get<Usuario>(this.rutaBase + 'validarUsuario/run=' + usuario + '&pass=' + contrasena);
     }
+
+
 
   registrarUsuario( id_usuario, rut, dv, pri_nom, seg_nom, pri_ap, seg_ap,  direccion, id_comuna, mail, password, sexo, rol, estado){
      return this.http.post(this.rutaBase+ 'registrar',{id_usuario, rut, dv, pri_nom, seg_nom, pri_ap, seg_ap, direccion, id_comuna, mail, password, sexo, rol, estado});
@@ -37,5 +44,9 @@ export class AutenticacionService {
   cambiarContrasena( mail, codigoOtp, nuevaClave){
     return this.http.post(this.rutaBase+ 'cambiarContrasena/',{mail, codigoOtp, nuevaClave})
  }  
+
+ listarComunas(){
+  return this.http.get<Comuna>(this.rutaBase+ 'comuna')
+} 
 
 }
