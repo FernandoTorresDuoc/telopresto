@@ -15,6 +15,8 @@ export class AutenticacionService {
   rutaBase: string = 'http://localhost:3001/';
   public usuarioAuth : string;
   public claveAuth : string;
+  
+  
 
   validarLogin(usuario, contrasena) {
     return this.http.get<Usuario>(this.rutaBase + 'validarUsuario/run=' + usuario + '&pass=' + contrasena)
@@ -27,4 +29,13 @@ export class AutenticacionService {
       return auth;
      }));
     }
+
+  registrarUsuario( id_usuario, rut, dv, pri_nom, seg_nom, pri_ap, seg_ap,  direccion, id_comuna, mail, password, sexo, rol, estado){
+     return this.http.post(this.rutaBase+ 'registrar',{id_usuario, rut, dv, pri_nom, seg_nom, pri_ap, seg_ap, direccion, id_comuna, mail, password, sexo, rol, estado});
+  }  
+
+  cambiarContrasena( mail, codigoOtp, nuevaClave){
+    return this.http.post(this.rutaBase+ 'cambiarContrasena/',{mail, codigoOtp, nuevaClave})
+ }  
+
 }

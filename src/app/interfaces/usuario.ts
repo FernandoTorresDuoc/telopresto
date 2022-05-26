@@ -15,5 +15,4 @@ export interface Usuario {
     sexo?:string;
     rol?:string;
     estado?:string;
-
 }

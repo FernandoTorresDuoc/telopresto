@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController, NavController, ToastController } from '@ionic/angular';
 import { AutenticacionService } from '../services/autenticacion.service';
 import { NavigationExtras, Router } from '@angular/router';
+ 
 
 @Component({
   selector: 'app-login',
@@ -21,11 +22,12 @@ export class LoginPage implements OnInit {
     public navController: NavController,
     private toastController: ToastController,
     private Autenticacion: AutenticacionService,
-    private Router: Router
+    private Router: Router,
   ) { }
 
   ngOnInit() {
   }
+  
 
   validarUsuario() {
     let usuario= this.usuarioForm.usuario;
@@ -44,8 +46,13 @@ export class LoginPage implements OnInit {
       });
     }
     
-
+    
   }
+
+  mostrarFormulario(){
+    this.navController.navigateRoot(['registrar']);
+  }
+  
   mostrarAlerta() {
     this.presentAlert();
   }
@@ -93,5 +100,75 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
+  // async mostrarFormulario() {
+  //   const alert = await this.alertController.create({
+  //     header: 'Nuevo Usuario',
+  //     inputs: [
+  //       {
+  //         name: 'txt_rut',
+  //         type: 'text',
+  //         placeholder: 'Ingrese Rut'
+  //       },
+  //       {
+  //         name: 'txt_dv',
+  //         type: 'text',
+  //         placeholder: 'Ingrese Dígito Verificador'
+  //       },
+  //       {
+  //         name: 'txt_pri_nom',
+  //         type: 'text',
+  //         placeholder: 'Ingrese Primer Nombre'
+  //       },
+  //       {
+  //         name: 'txt_seg_nom',
+  //         type: 'text',
+  //         placeholder: 'Ingrese Segundo Nombre'
+  //       },
+  //       {
+  //         name: 'txt_pri_ap',
+  //         type: 'text',
+  //         placeholder: 'Ingrese Primer Apellido'
+  //       },
+  //       {
+  //         name: 'txt_seg_ap',
+  //         type: 'text',
+  //         placeholder: 'Ingrese Segundo Apellido'
+  //       },
+  //       {
+  //         name: 'txt_direccion',
+  //         type: 'text',
+  //         placeholder: 'Ingrese Dirección'
+  //       },
+  //       {
+  //         name: 'txt_comuna',
+  //         type: 'text',
+  //         placeholder: 'Ingrese Comuna'
+  //       },
+  //       {
+  //         name: 'txt_contrasena',
+  //         // type: 'password', RECORDAR DESCOMENTAR
+  //         type: 'text', //SOLO PARA VISUALIZAR EN MODO PRUEBA
+  //         placeholder: 'Ingrese Contraseña'
+  //       }
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Cancelar',
+  //         role: 'cancel',
+  //         cssClass: 'secondary',
+  //         handler: () => {
+  //           console.log('Confirm Cancel');
+  //         }
+  //       }, {
+  //         text: 'Crear Usuario',
+  //         handler: (data) => {
+  //           // this.crearUsuario(data.txt_usuario, data.txt_contrasena);
+  //         }
+  //       }
+  //     ]
+  //   });
+
+  //   await alert.present();
+  // }
 
 }

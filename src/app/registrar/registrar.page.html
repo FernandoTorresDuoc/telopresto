@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>registrar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- (ngSubmit)="register(form)" -->
+    <form  #form="ngForm" >
+    <!-- <form> -->
+      <ion-grid>
+        <ion-row color="primary" justify-content-center>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+            <div text-center>
+              <h3>Crea tu Usuario</h3>
+            </div>
+            <div class="padding">
+              <ion-item>
+                <ion-input name="txt_run" type="text" placeholder="Ingrese Rut" [(ngModel)]="usuarioFormCrear.run"></ion-input>
+                <ion-input name="txt_dv" type="text" placeholder="Ingrese Dígito Verificador" maxlength="1" [(ngModel)]="usuarioFormCrear.dv"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="txt_pri_nom" type="text" placeholder="Ingrese su Primer Nombre" [(ngModel)]="usuarioFormCrear.pri_nom"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="txt_seg_nom" type="text" placeholder="Ingrese su Segundo Nombre" [(ngModel)]="usuarioFormCrear.seg_nom"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="txt_pri_ap" type="text" placeholder="Ingrese su Primer Apellido" [(ngModel)]="usuarioFormCrear.pri_ap"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="txt_seg_ap" type="text" placeholder="Ingrese su Segundo Apellido" [(ngModel)]="usuarioFormCrear.seg_ap"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="txt_direccion" type="text" placeholder="Ingrese su Dirección" [(ngModel)]="usuarioFormCrear.direccion"></ion-input>
+              </ion-item>
+              
+              <!-- <ion-item> INTENTO COMBOBOX COMUNA
+                <select class="form-control"  ngModel required></select>
+              </ion-item> -->
+              
+              <ion-item>
+                <ion-input name="txt_comuna" type="text" placeholder="Ingrese su Comuna" [(ngModel)]="usuarioFormCrear.comuna"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="txt_mail" type="email" placeholder="Ingrese su Correo Electrónico" [(ngModel)]="usuarioFormCrear.mail"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="txt_sexo" type="text" placeholder="Ingrese su Sexo" maxlength="1" [(ngModel)]="usuarioFormCrear.sexo"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="txt_rol" type="text" placeholder="Ingrese su Rol (Arrendador/Arrendatario)" [(ngModel)]="usuarioFormCrear.rol"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input class="ion-hide" name="txt_estado" type="text" placeholder="Ingrese su Estado" maxlength="1" [value]='usuarioFormCrear.estado' [(ngModel)]="usuarioFormCrear.estado"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="txt_password" type="password" placeholder="Ingrese su Contraseña" [(ngModel)]="usuarioFormCrear.password"></ion-input>
+              </ion-item>
+
+
+            </div>
+            <div padding>
+              <ion-button  size="large" (click)="registrarUsuario()"  expand="block">Registrar Usuario</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+
+</ion-content>
