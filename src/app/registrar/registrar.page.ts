@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AutenticacionService } from '../services/autenticacion.service';
 import { ActionSheetController, AlertController, NavController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar',
@@ -28,7 +29,8 @@ export class RegistrarPage implements OnInit {
   constructor(private Autenticacion: AutenticacionService, 
     public actionSheetController: ActionSheetController,
     public alertController: AlertController,
-    private toastController: ToastController) { }
+    private toastController: ToastController,
+    private router: Router) { }
 
   ngOnInit() {
     //this.cambiarContrasena();
@@ -71,6 +73,7 @@ export class RegistrarPage implements OnInit {
         data=>{
         }
       )
+      this.router.navigate(['login'])
 
     }
     
