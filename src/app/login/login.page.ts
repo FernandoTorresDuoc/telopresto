@@ -16,13 +16,14 @@ export class LoginPage implements OnInit {
     usuario: '',
     password: ''
   }
+
   constructor(
     public actionSheetController: ActionSheetController,
     public alertController: AlertController,
     public navController: NavController,
     private toastController: ToastController,
     private Autenticacion: AutenticacionService,
-    private Router: Router,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -33,11 +34,12 @@ export class LoginPage implements OnInit {
     let usuario= this.usuarioForm.usuario;
     let contrasena = this.usuarioForm.password;
     if(usuario=="" || contrasena==""){
-      this.presentToastWithOptions('Campos vacíos','Debe ingresar un usuario y una contraseña.');
+      this.presentToastWithOptions('Atención!','Debe ingresar un usuario y una contraseña.');
     } else{
       this.Autenticacion.validarLogin(usuario, contrasena).subscribe( data =>{
         console.log(data.id_usuario)
         if(data.id_usuario > 0){
+
           this.presentToast('Bienvenido!');
           this.navController.navigateRoot(['inicio']);
         }else{
@@ -50,7 +52,7 @@ export class LoginPage implements OnInit {
   }
 
   mostrarFormulario(){
-    this.navController.navigateRoot(['registrar']);
+    this.router.navigate(['registrar']);
   }
   
   mostrarAlerta() {
@@ -71,6 +73,7 @@ export class LoginPage implements OnInit {
 
   async presentToastWithOptions(header, message) {
     const toast = await this.toastController.create({
+      header: 'Atención!',
       message: message,
       icon: 'information-circle',
       position: 'top',
@@ -83,6 +86,8 @@ export class LoginPage implements OnInit {
           }
         }
       ]
+
+      
     });
     await toast.present();
 
@@ -170,5 +175,9 @@ export class LoginPage implements OnInit {
 
   //   await alert.present();
   // }
+
+  recuperarContrasena(){
+    this.router.navigate(['/recuperar']);
+  }
 
 }

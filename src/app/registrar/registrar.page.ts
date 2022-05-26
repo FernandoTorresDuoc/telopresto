@@ -73,7 +73,7 @@ export class RegistrarPage implements OnInit {
         data=>{
         }
       )
-      this.router.navigate(['login'])
+      this.router.navigate(['login']);
 
     }
     

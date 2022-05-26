@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recuperar Contraseña</ion-title>
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/" color="primary" mode="md">
+    </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card class="ion-margin"  class="cardtransparente" color="primary"> 
+      <br><h1 >Ingresa tu mail para recuperar tu contraseña!</h1> <br>
+      <img src="/assets/img/rroom100.png" width="60%">
+    </ion-card>
+    <ion-card class="ion-margin" class="cardtransparente" color="secondary">
+      <ion-item *ngIf="!ocultarEnviarMail" class="cardtransparente" >
+        <ion-label class="ion-margin" position="floating" color="primary">MAIL</ion-label>
+        <ion-input [(ngModel)]="usuarioForm.mail"></ion-input>
+      </ion-item>
+    </ion-card>
+    
+  </ion-card>
+  <ion-button *ngIf="!ocultarEnviarMail" expand="block" color="warning" class="ion-margin" position="floating" size="large" (click)="enviarMail()">ENVIAR MAIL</ion-button>
+  
+  <ion-card *ngIf="mostrarInputCodigo">
+    <ion-card class="ion-margin"  class="cardtransparente" color="primary"> 
+      <br><h1 >Ingresa el codigo aquí!</h1> <br>
+    </ion-card>
+    <ion-item class="cardtransparente" >
+      <ion-label class="ion-margin" position="floating" color="primary">CÓDIGO</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-button expand="block" color="warning" class="ion-margin" position="floating" size="large" (click)="enviarMail()">CAMBIAR CONTRASEÑA</ion-button>
+
+  </ion-card>
+</ion-content>

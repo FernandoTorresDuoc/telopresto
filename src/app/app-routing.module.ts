@@ -10,6 +10,12 @@ const routes: Routes = [
     //loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'login',
+    redirectTo: 'login',
+    pathMatch: 'full'
+    //loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
     path: 'inicio',
     redirectTo: 'inicio',
     pathMatch: 'full'
@@ -22,6 +28,18 @@ const routes: Routes = [
     //loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'recuperar',
+    redirectTo: 'recuperar',
+    pathMatch: 'full'
+    //loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+
+  {
+    path: '**',
+    redirectTo: 'e404',
+    pathMatch: 'full'
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
@@ -32,6 +50,14 @@ const routes: Routes = [
   {
     path: 'registrar',
     loadChildren: () => import('./registrar/registrar.module').then( m => m.RegistrarPageModule)
+  },
+  {
+    path: 'e404',
+    loadChildren: () => import('./e404/e404.module').then( m => m.E404PageModule)
+  },
+  {
+    path: 'recuperar',
+    loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule)
   },
   // {
   //   path: 'tab1',
