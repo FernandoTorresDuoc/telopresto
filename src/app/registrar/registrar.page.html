@@ -1,11 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>registrar</ion-title>
+    <img src="/assets/img/logo.png">
+    
     <ion-buttons slot="start" >
       <ion-back-button defaultHref="/" color="primary" mode="md">
       </ion-back-button>
     </ion-buttons>
   </ion-toolbar>
+  <div>
+    <ion-title style="font-family: Calibri; font-size: xx-large;">Crea tu Usuario</ion-title>
+  </div>
 </ion-header>
 
 <ion-content>
@@ -16,7 +20,7 @@
         <ion-row color="primary" justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
             <div text-center>
-              <h3>Crea tu Usuario</h3>
+              <h3></h3>
             </div>
             <div class="padding">
               <ion-item>
@@ -43,25 +47,40 @@
                 <select class="form-control"  ngModel required></select>
               </ion-item> -->
               
-              <ion-item>
+              <!-- <ion-item>
                 <ion-input name="txt_comuna" type="text" placeholder="Ingrese su Comuna" [(ngModel)]="usuarioFormCrear.comuna"></ion-input>
-              </ion-item>
+              </ion-item> -->
+              <ion-list>
+                <ion-item>
+                  <ion-label>Seleccione Comuna</ion-label>
+                  <ion-select name="txt_comuna"  [(ngModel)]="comuna2">
+                    <ion-select-option *ngFor="let comuna of listaComunas" [value]="comuna.id_comuna" >{{comuna.descripcion}} </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-list>
               <ion-item>
                 <ion-input name="txt_mail" type="email" placeholder="Ingrese su Correo Electrónico" [(ngModel)]="usuarioFormCrear.mail"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input name="txt_sexo" type="text" placeholder="Ingrese su Sexo" maxlength="1" [(ngModel)]="usuarioFormCrear.sexo"></ion-input>
+                <ion-label>Sexo</ion-label>
+                <ion-select name="txt_sexo" [(ngModel)]="sexo2">
+                  <ion-select-option value="F">Femenino</ion-select-option>
+                  <ion-select-option value="M">Masculino</ion-select-option>
+
+                </ion-select>
               </ion-item>
               <ion-item>
-                <ion-input name="txt_rol" type="text" placeholder="Ingrese su Rol (Arrendador/Arrendatario)" [(ngModel)]="usuarioFormCrear.rol"></ion-input>
+                <ion-label>Rol</ion-label>
+                <ion-select name="txt_rol" [(ngModel)]="rol">
+                  <ion-select-option value="Arrendador">Arrendador</ion-select-option>
+                  <ion-select-option value="Arrendatario">Arrendatario</ion-select-option>
+
+                </ion-select>
               </ion-item>
-              <ion-item>
-                <ion-input class="ion-hide" name="txt_estado" type="text" placeholder="Ingrese su Estado" maxlength="1" [value]='usuarioFormCrear.estado' [(ngModel)]="usuarioFormCrear.estado"></ion-input>
-              </ion-item>
+
               <ion-item>
                 <ion-input name="txt_password" type="password" placeholder="Ingrese su Contraseña" [(ngModel)]="usuarioFormCrear.password"></ion-input>
               </ion-item>
-
 
             </div>
             <div padding>
