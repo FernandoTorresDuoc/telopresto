@@ -86,6 +86,7 @@ export class RecuperarPage implements OnInit {
       console.log(data[0][0]._resultado_out);
       
       if(data[0][0]._resultado_out === 0){
+                
         this.Autenticacion.mail = this.usuarioForm.mail;
         this.Autenticacion.codigoOtp = this.usuarioForm.codigoOtp;
         

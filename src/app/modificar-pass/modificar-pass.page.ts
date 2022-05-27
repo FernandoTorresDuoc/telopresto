@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController, AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AutenticacionService } from '../services/autenticacion.service';
 
 @Component({
@@ -11,11 +11,9 @@ import { AutenticacionService } from '../services/autenticacion.service';
 export class ModificarPassPage implements OnInit {
 
   constructor(private router: Router,
-    private toastController: ToastController,
     private Autenticacion: AutenticacionService,
+    private toastController: ToastController,
     private alertController: AlertController) { }
-
-  
 
   ngOnInit() {
   }
@@ -25,8 +23,8 @@ export class ModificarPassPage implements OnInit {
     password2:''
 
   }
-
-
+  
+  
   contrasenaActualizada(){
     if(this.usuarioPass.password1.replace(/\s/g,'')==='' || this.usuarioPass.password2.replace(/\s/g,'')===''){
       this.notificacionMensajeEnv('Ups!','Los campos no pueden ser vacíos');
@@ -49,6 +47,7 @@ export class ModificarPassPage implements OnInit {
 
     
   }
+
 
   async alertaGenerica(header, message) {
     const alert = await this.alertController.create({
@@ -84,5 +83,4 @@ export class ModificarPassPage implements OnInit {
     const { role } = await toast.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
-
 }
