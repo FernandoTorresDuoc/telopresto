@@ -33,6 +33,12 @@ const routes: Routes = [
     pathMatch: 'full'
     //loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'modificar-pass',
+    redirectTo: 'modificar-pass',
+    pathMatch: 'full'
+    //loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
 
   {
     path: '**',
@@ -58,6 +64,10 @@ const routes: Routes = [
   {
     path: 'recuperar',
     loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+  },
+  {
+    path: 'modificar-pass',
+    loadChildren: () => import('./modificar-pass/modificar-pass.module').then( m => m.ModificarPassPageModule)
   },
   // {
   //   path: 'tab1',
