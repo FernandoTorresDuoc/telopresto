@@ -24,7 +24,7 @@ export class RecuperarPage implements OnInit {
 
   enviarMail(){
     let mail = this.usuarioForm.mail;
-    if(mail === ''){
+    if(mail === '' ){
       this.notificacionMensajeEnv('Atención!','Este campo no puede estar vacío! Debe ingresar un Correo válido.')
      
     }else{
@@ -36,6 +36,10 @@ export class RecuperarPage implements OnInit {
       this.ocultarEnviarMail = true;
 
     }
+  }
+
+  verificaCodigo(){
+    this.router.navigate(['modificar-pass'])
   }
 
   async notificacionMensajeEnv(header, message) {

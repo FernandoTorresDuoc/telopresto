@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recuperar Contraseña</ion-title>
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/" color="primary" mode="md">
+    </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card class="ion-margin"  class="cardtransparente" color="primary"> 
+      <br><h1 >Ingresa tu nueva contraseña!</h1> <br>
+      <img src="/assets/img/rroom100.png" width="60%">
+    </ion-card>
+    <ion-card class="ion-margin" class="cardtransparente" color="secondary">
+      <ion-item *ngIf="!ocultarEnviarMail" class="cardtransparente" >
+        <ion-label class="ion-margin" position="floating" color="primary">CONTRASEÑA NUEVA</ion-label>
+        <ion-input type="text" ></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!ocultarEnviarMail" class="cardtransparente" >
+        <ion-label class="ion-margin" position="floating" color="primary">REPETIR CONTRASEÑA NUEVA</ion-label>
+        <ion-input type="text" ></ion-input>
+      </ion-item>
+    </ion-card>
+
+  </ion-card>
+    
+  
+  <ion-button expand="block" color="warning" class="ion-margin" position="floating" size="large" (click)="contrasenaActualizada()">CAMBIAR CONTRASEÑA</ion-button>
+
+    
+
+</ion-content>
