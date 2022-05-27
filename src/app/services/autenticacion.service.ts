@@ -45,8 +45,20 @@ export class AutenticacionService {
     return this.http.post(this.rutaBase+ 'cambiarContrasena/',{mail, codigoOtp, nuevaClave})
  }  
 
- listarComunas(){
-  return this.http.get<Comuna>(this.rutaBase+ 'comuna')
-} 
+  listarComunas(){
+    return this.http.get<Comuna>(this.rutaBase+ 'comuna')
+  } 
+
+  enviarCorreo(nombres, email, codigoOtp){
+    return this.http.post(this.rutaBase+ 'send-email/',{nombres, email, codigoOtp})
+  }
+
+  crearCodigoOtp(mail, codigoOtp, idusuario){
+    return this.http.post(this.rutaBase+ 'crearCodigo/',{mail, codigoOtp, idusuario})
+  }
+
+  consultarDatosUsuario(mail){
+    return this.http.post(this.rutaBase+ 'consultarDatosUsuario/',{mail})
+  }
 
 }
