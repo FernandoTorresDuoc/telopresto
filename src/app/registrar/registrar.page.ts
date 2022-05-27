@@ -39,8 +39,9 @@ export class RegistrarPage implements OnInit {
   ngOnInit() {
     // this.cambiarContrasena();
     this.listarComunas();
+    // this.enviarCorreo(); descomentar esto para enviar el correo con codigo hardcoded
   }
-  /*
+  
   cambiarContrasena(){ //Acá realizar la llamada y enviar los parámetros para validar el código
     this.Autenticacion.cambiarContrasena('imontes227@gmail.com','17443126','pico1234').subscribe(
       data=>{
@@ -53,7 +54,37 @@ export class RegistrarPage implements OnInit {
       }
     )
   }
-  */
+
+  enviarCorreo(nombres, correo, codigoOtp ){ //Enviar correo
+    this.Autenticacion.enviarCorreo(nombres, correo, codigoOtp).subscribe(
+      data=>{
+        console.log(data);
+       
+        
+      }
+    )
+  }
+
+  crearCodigoOtp(mail, codigoOtp, idusuario){ //Enviar correo
+    this.Autenticacion.crearCodigoOtp(mail, codigoOtp, idusuario).subscribe(
+      data=>{
+        console.log(data);
+       
+        
+      }
+    )
+  }
+
+  consultarDatosUsuario(mail){ //Enviar correo
+    this.Autenticacion.consultarDatosUsuario(mail).subscribe(
+      data=>{
+        console.log(data);
+       
+        
+      }
+    )
+  }
+  
   registrarUsuario(){
     let id_usuario = 0;
     let run = this.usuarioFormCrear.run;
