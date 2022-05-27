@@ -30,7 +30,7 @@
     </ion-card>
     <ion-item class="cardtransparente" >
       <ion-label class="ion-margin" position="floating" color="primary">CÓDIGO</ion-label>
-      <ion-input></ion-input>
+      <ion-input type="number" [(ngModel)]="codigoOtp"></ion-input>
     </ion-item>
     <ion-button expand="block" color="warning" class="ion-margin" position="floating" size="large" (click)="verificaCodigo()">CAMBIAR CONTRASEÑA</ion-button>
 

@@ -15,7 +15,8 @@ export class RecuperarPage implements OnInit {
   usuarioForm = {
     mail:''
   }
-
+  
+  codigoOtp = String('');
   constructor(private router: Router,
     private toastController: ToastController) { }
 
@@ -39,7 +40,15 @@ export class RecuperarPage implements OnInit {
   }
 
   verificaCodigo(){
-    this.router.navigate(['modificar-pass'])
+    if(this.codigoOtp === ''){
+      console.log('no pasa');
+      
+      this.notificacionMensajeEnv('Atención!','Este campo no puede estar vacío! Debe ingresar el codigo correcto.')
+
+    }else{
+      this.router.navigate(['modificar-pass']);
+      this.notificacionMensajeEnv('','Codigo Correcto!')  
+    }
   }
 
   async notificacionMensajeEnv(header, message) {
