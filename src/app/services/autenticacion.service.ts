@@ -16,10 +16,12 @@ export class AutenticacionService {
   rutaBase: string = 'http://localhost:3001/';
   public usuarioAuth : string;
   public claveAuth : string;
-
+  
   public mail: string='';
   public codigoOtp: string='';
+ 
   
+
   
 
   // validarLogin(usuario, contrasena) {

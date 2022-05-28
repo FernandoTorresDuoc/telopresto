@@ -9,5 +9,20 @@
 </ion-header>
 
 <ion-content>
-  <div id="map"></div>
+  <div id="map" class="ion-margin-center"></div>
+    <ion-slides (ionSlideDidChange)="OnSlideDidChange()">
+      <ion-slide *ngFor="let marker of markers">
+        <ion-card>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img [src]="marker.image">
+            </ion-thumbnail>
+            <ion-label class="ion-text-wrap">              
+              <h2>{{marker.title}}</h2>
+              <p>{{marker.text}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
 </ion-content>
