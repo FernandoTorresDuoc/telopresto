@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController,ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AutenticacionService } from '../services/autenticacion.service';
 
 @Component({
@@ -17,11 +17,12 @@ export class RecuperarPage implements OnInit {
   id_usuario: number = 0;
   codigoOtp: number = 0;
 
+  
   usuarioForm = {
     mail:'',
     codigoOtp:''
   }
-  
+
   constructor(private router: Router,
     private toastController: ToastController,
     private Autenticacion: AutenticacionService,

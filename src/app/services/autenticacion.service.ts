@@ -17,10 +17,12 @@ export class AutenticacionService {
   rutaBase: string = 'http://34.125.116.134:3001/';
   public usuarioAuth : string;
   public claveAuth : string;
-
+  
   public mail: string='';
   public codigoOtp: string='';
+ 
   
+
   
 
   // validarLogin(usuario, contrasena) {

@@ -15,14 +15,14 @@
       <img src="/assets/img/rroom100.png" width="60%">
     </ion-card>
     <ion-card class="ion-margin" class="cardtransparente" color="secondary">
-      <ion-item class="cardtransparente" >
+      <ion-item *ngIf="!ocultarEnviarMail" class="cardtransparente" >
         <ion-label class="ion-margin" position="floating" color="primary">CONTRASEÑA NUEVA</ion-label>
-        <ion-input type="text" [(ngModel)]="usuarioPass.password1"></ion-input>
+        <ion-input type="password" [(ngModel)]="usuarioPass.password1"></ion-input>
       </ion-item>
 
-      <ion-item class="cardtransparente" >
+      <ion-item *ngIf="!ocultarEnviarMail" class="cardtransparente" >
         <ion-label class="ion-margin" position="floating" color="primary">REPETIR CONTRASEÑA NUEVA</ion-label>
-        <ion-input type="text" [(ngModel)]="usuarioPass.password2"></ion-input>
+        <ion-input type="password" [(ngModel)]="usuarioPass.password2"></ion-input>
       </ion-item>
     </ion-card>
 
