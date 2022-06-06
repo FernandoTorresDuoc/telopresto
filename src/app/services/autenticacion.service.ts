@@ -5,6 +5,7 @@ import { Respuesta } from '../interfaces/Respuesta';
 import { map, withLatestFrom } from 'rxjs/operators';
 import { Usuario } from '../interfaces/usuario';
 import { Comuna } from '../interfaces/comuna';
+import { Marker } from '../interfaces/marker';
 
 @Injectable({
   providedIn: 'root'
@@ -68,4 +69,7 @@ export class AutenticacionService {
     return this.http.post(this.rutaBase+ 'validarCodigo/',{codigoOtp, mail, idusuario})
   }
 
+  obtenerServicios(){
+    return this.http.post<Marker>(this.rutaBase+'obtenerServicios/',{})
+  }
 }

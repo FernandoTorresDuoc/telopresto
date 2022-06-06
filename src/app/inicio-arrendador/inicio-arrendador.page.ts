@@ -1,85 +1,64 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonSlides, LoadingController } from '@ionic/angular';
+import { MenuController, IonSlides, LoadingController } from '@ionic/angular';
 import { Marker } from '../interfaces/marker';
 import { AutenticacionService } from '../services/autenticacion.service';
 
 declare var google;
 
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.page.html',
-  styleUrls: ['./inicio.page.scss'],
+  selector: 'app-inicio-arrendador',
+  templateUrl: './inicio-arrendador.page.html',
+  styleUrls: ['./inicio-arrendador.page.scss'],
 })
-export class InicioPage implements OnInit {
-
-
+export class InicioArrendadorPage implements OnInit {
+  
   @ViewChild(IonSlides) slides: IonSlides;
 
-  // listaServicios: Marker[] =[];
   marker2: Marker;
-
   mapRef = null;
   infoWindowRef = null;
   markers: Marker[] = [
     // {
-    //   lat: this.listaServicios[0][0].latitud, 
-    // lng: this.listaServicios[0][0].longitud,
-    // title: this.listaServicios[0][0].categoria,
-    // image: '',
-    // text: this.listaServicios[0][0].descripcion
-    // },
-    // {
-    //   lat: this.listaServicios[0][1].latitud, 
-    // lng: this.listaServicios[0][1].longitud,
-    // title: this.listaServicios[0][1].categoria,
-    // image: '',
-    // text: this.listaServicios[0][1].descripcion
-    // },
-    // {
-    //   lat: this.listaServicios[0][2].latitud, 
-    // lng: this.listaServicios[0][2].longitud,
-    // title: this.listaServicios[0][2].categoria,
-    // image: '',
-    // text: this.listaServicios[0][2].descripcion
-    // },
-
-
-    // {
     //   lat: -33.446923638511485, 
     // lng: -70.65764190006061,
     // title: 'Baño 1',
-    // image: '',
+    // image: 'https://www.sodimac.cl/static/campana/ideas/2020-banno-y-cocina/banno/img/03-EDP2_bano@2x.jpg',
     // text: 'Bañito'
     // },
     // {
     //   lat: -33.443853011823265,  
     // lng: -70.65752388329577,
     // title: 'Baño 2',
-    // image: '',
+    // image: 'https://www.sodimac.cl/static/campana/ideas/2020-banno-y-cocina/banno/img/03-EDP2_bano@2x.jpg',
     // text: 'Bañito'
     // },
     // {
     //   lat: -33.447183249148104,  
     // lng:  -70.66237331687313,
     // title: 'Baño 3',
-    // image: '',
+    // image: 'https://www.sodimac.cl/static/campana/ideas/2020-banno-y-cocina/banno/img/03-EDP2_bano@2x.jpg',
     // text: 'Bañito'
     // }
   ];
-  
-  constructor( private loadingCtrl: LoadingController,
+
+  constructor(private menu: MenuController,
     private router: Router,
-    private Autenticacion:AutenticacionService) { 
+    private loadingCtrl: LoadingController,
+    private Autenticacion:AutenticacionService) {
     this.infoWindowRef = new google.maps.InfoWindow();
-    
-  }
+   }
 
   ngOnInit() {
     this.loadMap();
     this.obtenerServicios();
   }
-  
+
+  openCustom() {
+    this.menu.enable(true, 'custom');
+    this.menu.open('custom');
+  }
+
   async loadMap() {
     const loading = await this.loadingCtrl.create();
     await loading.present();

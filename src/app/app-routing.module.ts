@@ -39,6 +39,18 @@ const routes: Routes = [
     pathMatch: 'full'
     //loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'inicio-arrendador',
+    redirectTo: 'inicio-arrendador',
+    pathMatch: 'full'
+    //loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'servicios-arrendador',
+    redirectTo: 'servicios-arrendador',
+    pathMatch: 'full'
+    //loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
 
   {
     path: '**',
@@ -68,6 +80,14 @@ const routes: Routes = [
   {
     path: 'modificar-pass',
     loadChildren: () => import('./modificar-pass/modificar-pass.module').then( m => m.ModificarPassPageModule)
+  },
+  {
+    path: 'inicio-arrendador',
+    loadChildren: () => import('./inicio-arrendador/inicio-arrendador.module').then( m => m.InicioArrendadorPageModule)
+  },
+  {
+    path: 'servicios-arrendador',
+    loadChildren: () => import('./servicios-arrendador/servicios-arrendador.module').then( m => m.ServiciosArrendadorPageModule)
   },
   // {
   //   path: 'tab1',
