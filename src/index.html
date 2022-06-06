@@ -18,6 +18,29 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCD1VSqo3Upl0wnzHitsClLwu_NVYBlV54"> </script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+    function handleCredentialResponse(response) {
+      console.log("Encoded JWT ID token: " + response.credential);
+    }
+    window.onload = function () {
+      google.accounts.id.initialize({
+        client_id: "647258348761-couk7dtqes044ggdtvii4h7rt565qr2u.apps.googleusercontent.com",
+        scope: 'email profile openid',
+        ux_mode:'redirect',
+        fetch_basic_profile: true,
+        redirect_uri: '/inicio/' ,
+        callback: handleCredentialResponse,
+
+      });
+      google.accounts.id.renderButton( 
+        document.getElementById("buttonDiv"),
+        { theme: "outline",
+    }  // customization attributes
+      );
+      google.accounts.id.prompt(); // also display the One Tap dialog
+    }
+</script>
 </head>
 
 <body>

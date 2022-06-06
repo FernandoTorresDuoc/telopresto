@@ -6,6 +6,7 @@ import { map, withLatestFrom } from 'rxjs/operators';
 import { Usuario } from '../interfaces/usuario';
 import { Comuna } from '../interfaces/comuna';
 import { Marker } from '../interfaces/marker';
+import { Foto } from '../interfaces/foto';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +15,14 @@ export class AutenticacionService {
 
   constructor(private http: HttpClient,  public alertController:AlertController, public navController: NavController) { }
 
-  //rutaBase: string = 'http://localhost:3001/';
-  rutaBase: string = 'http://34.125.116.134:3001/';
+  rutaBase: string = 'http://localhost:3001/';
+  // rutaBase: string = 'http://34.125.116.134:3001/';
   public usuarioAuth : string;
   public claveAuth : string;
   
   public mail: string='';
   public codigoOtp: string='';
- 
-  
+  public slideSeleccionada :number = 0;
 
   
 
@@ -72,5 +72,13 @@ export class AutenticacionService {
 
   obtenerServicios(){
     return this.http.post<Marker>(this.rutaBase+'obtenerServicios/',{})
+  }
+
+  obtenerImagenes(idServicio){
+    return this.http.post(this.rutaBase+'consultarFoto/',{idServicio})
+  }
+
+  obtenerImagenPrimaria(idServicio){
+    return this.http.post(this.rutaBase+'consultarFotoPrimaria/',{idServicio})
   }
 }

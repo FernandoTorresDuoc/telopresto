@@ -34,23 +34,29 @@ export class LoginPage implements OnInit {
     let usuario= this.usuarioForm.usuario;
     let contrasena = this.usuarioForm.password;
     if(usuario=="" || contrasena=="" ){
-      this.presentToastWithOptions('Atención!','Debe ingresar un usuario y una contraseña.');
+      this.presentToast('Debe ingresar un usuario y una contraseña.');
     } else{
       this.Autenticacion.validarLogin(usuario, contrasena).subscribe( data =>{
         // console.log(data);
         // console.log(data.id_usuario)
         //console.log(data[0].rol)
-        if(data[0].id_usuario > 0 && data[0].rol == "Arrendatario"){
-
-          this.presentToast('Bienvenido!');
-          this.navController.navigateRoot(['inicio']);
-        }else if (data[0].id_usuario > 0 && data[0].rol == "Arrendador"){
-          this.presentToast('Bienvenido!');
-          this.navController.navigateRoot(['inicio-arrendador']);
-
-        }else if(data[0].id_usuario === null ){
-          console.log('Login nok')
+        if (data[0] ==null){
+          this.presentToast('Las credenciales son incorrectas, por favor reintente');
         }
+        else{
+          if(data[0].id_usuario > 0 && data[0].rol == "Arrendatario"){
+
+            this.presentToast('Bienvenido!');
+            this.navController.navigateRoot(['inicio']);
+          }else if (data[0].id_usuario > 0 && data[0].rol == "Arrendador"){
+            this.presentToast('Bienvenido!');
+            this.navController.navigateRoot(['inicio-arrendador']);
+  
+          }else if(data[0].id_usuario === null ){
+            console.log('Login nok')
+          }
+        }
+        
       });
     }   
     

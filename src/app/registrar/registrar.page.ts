@@ -128,6 +128,7 @@ export class RegistrarPage implements OnInit {
     data =>{
       for(let elemento in data){
         this.listaComunas.push(data[elemento]);
+        console.log(data[elemento]);
       }
     }
     /*data=>{

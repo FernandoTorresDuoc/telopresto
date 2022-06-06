@@ -26,7 +26,7 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 ion-content {
-    // --background: url(/assets/img/tiles.jpg) repeat 50% 50%;
+    //--background: url(/assets/img/tiles.jpg) repeat 50% 50%;
 }
 
 ion-card {
@@ -48,8 +48,25 @@ ion-tab-button {
     --ripple-color: #777777;
   }
 
-
-.my-custom-menu {
+  .my-custom-menu {
     --width: 250px;
   }
 
+.centrar {
+    //height: 100vh; /* suponiendo que quieres centrar respecto a todo el alto de la pantalla */
+    width: 100%;
+    display: flex!important; /* propiedad flexbox */
+    justify-content: center!important; /* centra el contenido horizontalmmente */
+    align-items: center!important; /* centra el contenido verticalmente */
+  }
+
+  .modal{
+    z-index: 1101 !important;
+  }
+
+  .input-wrapper{
+    width: 100%!important;
+    display: flex!important; /* propiedad flexbox */
+    justify-content: center!important; /* centra el contenido horizontalmmente */
+    align-items: center!important; /* centra el contenido verticalmente */
+  }
