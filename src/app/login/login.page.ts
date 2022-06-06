@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController, NavController, ToastController } from '@ionic/angular';
 import { AutenticacionService } from '../services/autenticacion.service';
 import { NavigationExtras, Router } from '@angular/router';
+import { Usuario } from '../interfaces/usuario';
  
 
 @Component({
@@ -11,7 +12,6 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   mensajeError: string;
-
   usuarioForm = {
     usuario: '',
     password: ''
@@ -33,22 +33,26 @@ export class LoginPage implements OnInit {
   validarUsuario() {
     let usuario= this.usuarioForm.usuario;
     let contrasena = this.usuarioForm.password;
-    if(usuario=="" || contrasena==""){
+    if(usuario=="" || contrasena=="" ){
       this.presentToastWithOptions('Atención!','Debe ingresar un usuario y una contraseña.');
     } else{
       this.Autenticacion.validarLogin(usuario, contrasena).subscribe( data =>{
-        console.log(data);
-        console.log(data.id_usuario)
-        if(data[0].id_usuario > 0){
+        // console.log(data);
+        // console.log(data.id_usuario)
+        //console.log(data[0].rol)
+        if(data[0].id_usuario > 0 && data[0].rol == "Arrendatario"){
 
           this.presentToast('Bienvenido!');
           this.navController.navigateRoot(['inicio']);
+        }else if (data[0].id_usuario > 0 && data[0].rol == "Arrendador"){
+          this.presentToast('Bienvenido!');
+          this.navController.navigateRoot(['inicio-arrendador']);
+
         }else if(data[0].id_usuario === null ){
           console.log('Login nok')
         }
       });
-    }
-    
+    }   
     
   }
 
