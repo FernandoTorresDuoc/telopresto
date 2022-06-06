@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonSlides, LoadingController } from '@ionic/angular';
+import { AlertController, IonSlides, LoadingController, ToastController } from '@ionic/angular';
 import { Marker } from '../interfaces/marker';
 import { AutenticacionService } from '../services/autenticacion.service';
 
@@ -17,7 +17,7 @@ export class InicioPage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
 
   // listaServicios: Marker[] =[];
-  marker2: Marker;
+  // marker2: Marker;
 
   mapRef = null;
   infoWindowRef = null;
@@ -69,6 +69,8 @@ export class InicioPage implements OnInit {
   ];
   
   constructor( private loadingCtrl: LoadingController,
+    private alertController:AlertController,
+    private toastController: ToastController,
     private router: Router,
     private Autenticacion:AutenticacionService) { 
     this.infoWindowRef = new google.maps.InfoWindow();
@@ -99,7 +101,7 @@ export class InicioPage implements OnInit {
     });
   }
 
-  private addMarket(itemMarker: Marker){
+  private addMarker(itemMarker: Marker){
     const icon={
           url: 'assets/img/icons8_toilet_bowl_50px.png',
           scaledSize: new google.maps.Size(60, 60), // scaled size
@@ -119,10 +121,22 @@ export class InicioPage implements OnInit {
 
   private loadMarkers(){
     this.markers.forEach(marker =>{
-      const markerObj = this.addMarket(marker);
+      const markerObj = this.addMarker(marker);
       marker.markerObj = markerObj;
 
     });
+  }
+
+
+
+  async tap(){
+    const currentTap = await this.slides.getActiveIndex();
+    const marker = this.markers[currentTap];
+    
+    // this.presentToastWithOptions('Horario: ' + marker.hora_ini,' - ' + marker.hora_ter);
+    this.presentAlert(marker.categoria,marker.descripcion+'<br>'+marker.direccion);
+    console.log(marker);
+    // console.log(marker.descripcion);
   }
 
 
@@ -177,5 +191,27 @@ export class InicioPage implements OnInit {
         // console.log(this.listaServicios[0]); //ya tenemos la info de la bd
       }
     })
+  }
+
+  async presentAlert(subtitulo, message) {
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Detalle',
+      subHeader: subtitulo,
+      message: message,
+      buttons: [{
+        text: 'Arrendar',
+        cssClass: 'my-custom-class',
+        handler: ()=>{
+          
+        }
+      }]
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 }

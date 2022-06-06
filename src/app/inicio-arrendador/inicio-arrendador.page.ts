@@ -78,7 +78,7 @@ export class InicioArrendadorPage implements OnInit {
     });
   }
 
-  private addMarket(itemMarker: Marker){
+  private addMarker(itemMarker: Marker){
     const icon={
           url: 'assets/img/icons8_toilet_bowl_50px.png',
           scaledSize: new google.maps.Size(60, 60), // scaled size
@@ -98,7 +98,7 @@ export class InicioArrendadorPage implements OnInit {
 
   private loadMarkers(){
     this.markers.forEach(marker =>{
-      const markerObj = this.addMarket(marker);
+      const markerObj = this.addMarker(marker);
       marker.markerObj = markerObj;
 
     });
