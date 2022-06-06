@@ -1,0 +1,21 @@
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Fotos del servicio</ion-title>
+      <ion-buttons slot="start" >
+          <ion-icon name="arrow-back" (click)="close()" class="modal" color="primary" style="width: 30px;height:30px"></ion-icon>
+     </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-card *ngFor="let x of listaFotos">
+      <ion-card-header>
+        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+        <ion-card-title>Card Title</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <img src="{{x.foto}}" >
+      </ion-card-content>
+    </ion-card>
+
+  </ion-content>

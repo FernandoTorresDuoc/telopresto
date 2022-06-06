@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AlertController, IonSlides, LoadingController, ToastController } from '@ionic/angular';
 import { Marker } from '../interfaces/marker';
 import { AutenticacionService } from '../services/autenticacion.service';
+import { ModalController } from '@ionic/angular'
+import { ModalComponentComponent } from '../modal-component/modal-component.component';
 
 declare var google;
 
@@ -18,61 +20,20 @@ export class InicioPage implements OnInit {
 
   // listaServicios: Marker[] =[];
   // marker2: Marker;
-
+  currentSlide: number = 0;
+  marker = 0;
   mapRef = null;
   infoWindowRef = null;
   markers: Marker[] = [
-    // {
-    //   lat: this.listaServicios[0][0].latitud, 
-    // lng: this.listaServicios[0][0].longitud,
-    // title: this.listaServicios[0][0].categoria,
-    // image: '',
-    // text: this.listaServicios[0][0].descripcion
-    // },
-    // {
-    //   lat: this.listaServicios[0][1].latitud, 
-    // lng: this.listaServicios[0][1].longitud,
-    // title: this.listaServicios[0][1].categoria,
-    // image: '',
-    // text: this.listaServicios[0][1].descripcion
-    // },
-    // {
-    //   lat: this.listaServicios[0][2].latitud, 
-    // lng: this.listaServicios[0][2].longitud,
-    // title: this.listaServicios[0][2].categoria,
-    // image: '',
-    // text: this.listaServicios[0][2].descripcion
-    // },
-
-
-    // {
-    //   lat: -33.446923638511485, 
-    // lng: -70.65764190006061,
-    // title: 'Baño 1',
-    // image: '',
-    // text: 'Bañito'
-    // },
-    // {
-    //   lat: -33.443853011823265,  
-    // lng: -70.65752388329577,
-    // title: 'Baño 2',
-    // image: '',
-    // text: 'Bañito'
-    // },
-    // {
-    //   lat: -33.447183249148104,  
-    // lng:  -70.66237331687313,
-    // title: 'Baño 3',
-    // image: '',
-    // text: 'Bañito'
-    // }
+    
   ];
   
   constructor( private loadingCtrl: LoadingController,
     private alertController:AlertController,
     private toastController: ToastController,
     private router: Router,
-    private Autenticacion:AutenticacionService) { 
+    private Autenticacion:AutenticacionService,
+    private ModalController:ModalController) { 
     this.infoWindowRef = new google.maps.InfoWindow();
     
   }
@@ -80,6 +41,7 @@ export class InicioPage implements OnInit {
   ngOnInit() {
     this.loadMap();
     this.obtenerServicios();
+    
   }
   
   async loadMap() {
@@ -139,13 +101,33 @@ export class InicioPage implements OnInit {
     // console.log(marker.descripcion);
   }
 
+  async obtenerImagenes(id_servicio, primario){
+    this.Autenticacion.obtenerImagenes(id_servicio).subscribe(data=>{
+      for(let elemento in data){
+
+        console.log(data);
+      }
+    })
+  };
+
+  
+  async obtenerImagenPrimaria(id_servicio){
+    this.Autenticacion.obtenerImagenes(id_servicio).subscribe(data=>{
+      for(let elemento in data){
+
+        console.log(data);
+      }
+    })
+  };
+
 
   async OnSlideDidChange(){
-    const currentSlide = await this.slides.getActiveIndex();
-    
+    this.currentSlide = await this.slides.getActiveIndex();
     // console.log(currentSlide);
     // console.log(this.markers[currentSlide]);
-    const marker = this.markers[currentSlide];
+    const marker = this.markers[this.currentSlide];
+    this.Autenticacion.slideSeleccionada = marker.id_servicio;
+    console.log('Id de servicio-->', this.Autenticacion.slideSeleccionada)
     this.mapRef.panTo({lat: marker.latitud, lng: marker.longitud});
     
     const markerObj = marker.markerObj;
@@ -158,39 +140,27 @@ export class InicioPage implements OnInit {
   obtenerServicios(){
     // console.log('hola');
     // console.log(this.listaServicios);
-    
-    
     this.Autenticacion.obtenerServicios().subscribe(data=>{
       for(let elemento in data){
         // console.log(data);
         let numero: number;
         numero = data[elemento].id_servicio;
-        // this.marker2.id_servicio = data[elemento].id_servicio;
-        // marker2.categoria = data[elemento].categoria;
-        // marker2.descripcion = data[elemento].descripcion;
-        // marker2.direccion = data[elemento].direccion;
-        // marker2.dia_ini = data[elemento].dia_ini;
-        // marker2.dia_ter = data[elemento].dia_ter;
-        // marker2.hora_ini = data[elemento].hora_ini;
-        // marker2.hora_ter = data[elemento].hora_ter;
-        // marker2.precio = data[elemento].precio;
-        // marker2.fecha_creacion = data[elemento].fecha_creacion;
-        // marker2.estado = data[elemento].estado;
-        // marker2.id_usuario = data[elemento].id_usuario;
-        // marker2.latitud = data[elemento].latitud;
-        // marker2.longitud = data[elemento].longitud;
-        
-        // console.log(data[elemento].id_servicio);
-        // console.log("Marker: "+this.marker2.id_servicio);
-        // console.log(numero);
-        
-        
         this.markers.push(data[elemento]);
-        console.log(this.markers);
         
         // console.log(this.listaServicios[0]); //ya tenemos la info de la bd
       }
     })
+  
+  }
+
+  async openModal(){
+
+    const modal = await this.ModalController.create({
+
+      component: ModalComponentComponent
+    });
+
+    await modal.present();
   }
 
   async presentAlert(subtitulo, message) {

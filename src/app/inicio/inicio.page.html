@@ -12,10 +12,11 @@
   <div id="map" class="ion-margin-center"></div>
     <ion-slides (ionSlideDidChange)="OnSlideDidChange()">
       <ion-slide *ngFor="let marker of markers">
-        <ion-card>
+        <ion-card >
           <ion-item>
             <ion-thumbnail slot="start">
-              <img src="assets\img\TeloPrestoLogo.png">
+              <!-- <img src="assets\img\TeloPrestoLogo.png"> -->
+              <img button src="{{marker.foto}} " id="trigger-button" (click)="openModal()">
             </ion-thumbnail>
             <ion-label class="ion-text-wrap">              
               <h2>{{marker.categoria}}</h2>
