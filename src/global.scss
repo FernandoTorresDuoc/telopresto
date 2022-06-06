@@ -26,7 +26,7 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 ion-content {
-    --background: url(/assets/img/tiles.jpg) repeat 50% 50%;
+    // --background: url(/assets/img/tiles.jpg) repeat 50% 50%;
 }
 
 ion-card {
@@ -46,5 +46,10 @@ ion-tab-button {
     --color:#999999;
     --color-selected: red;
     --ripple-color: #777777;
+  }
+
+
+.my-custom-menu {
+    --width: 250px;
   }
 
