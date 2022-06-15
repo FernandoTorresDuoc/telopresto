@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Arrendar un servicio</ion-title>
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/" color="primary" mode="md">
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-card >
+    <ion-card-header>Servicios disponibles en tu área</ion-card-header>
+    <ion-card *ngFor= "let marker of markers">
+      <ion-item  detail>
+        <ion-label>{{marker.descripcion}}</ion-label>
+        <ion-label>{{marker.direccion}}</ion-label>
+      </ion-item>
+    </ion-card>
+  </ion-card> -->
+
+  <ion-list lines="full" class="ion-margin">
+    <ion-item *ngFor= "let marker of markers" detail>
+      <ion-icon name="walk" slot="start"></ion-icon>
+      <ion-card-header>
+        <ion-card-title>Servicio: {{marker.descripcion}}</ion-card-title>
+        <ion-card-subtitle>Dirección: {{marker.direccion}}</ion-card-subtitle>
+      </ion-card-header>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

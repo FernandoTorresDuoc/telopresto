@@ -53,6 +53,19 @@ const routes: Routes = [
   },
 
   {
+    path: 'arriendo-arrendatario',
+    redirectTo: 'arriendo-arrendatario',
+    pathMatch: 'full'
+    //loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+
+  {
+    path: 'ingresar-servicio',
+    redirectTo: 'ingresar-servicio',
+    pathMatch: 'full'
+    //loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'e404',
     pathMatch: 'full'

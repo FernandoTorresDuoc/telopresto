@@ -171,7 +171,7 @@ export class InicioPage implements OnInit {
       subHeader: subtitulo,
       message: message,
       buttons: [{
-        text: 'Arrendar',
+        text: 'Ok',
         cssClass: 'my-custom-class',
         handler: ()=>{
           

@@ -1,0 +1,153 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-padding">Nuevo Servicio</ion-title>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/" color="primary" mode="md">
+      </ion-back-button>
+    </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+    <ion-item lines="full">
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-input type="text" required [(ngModel)]="servicioForm.categoria"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input type="text" required [(ngModel)]="servicioForm.descripcion"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Dirección</ion-label>
+      <ion-input type="text" required [(ngModel)]="servicioForm.direccion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Seleccione Comuna</ion-label>
+      <ion-select name="txt_comuna"  [(ngModel)]="servicioForm.comuna" okText="Aceptar" cancelText="Atrás">
+        <ion-select-option *ngFor="let comuna of listaComunas" [value]="comuna.id_comuna" >{{comuna.descripcion}} </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Dia de inicio</ion-label>
+      <ion-select value="Dia de Inicio" okText="Aceptar" cancelText="Atrás" [(ngModel)]="servicioForm.diaInicio">
+        <ion-select-option value="1">Lunes</ion-select-option>
+        <ion-select-option value="2">Martes</ion-select-option>
+        <ion-select-option value="3">Miercoles</ion-select-option>
+        <ion-select-option value="4">Jueves</ion-select-option>
+        <ion-select-option value="5">Viernes</ion-select-option>
+        <ion-select-option value="6">Sabado</ion-select-option>
+        <ion-select-option value="7">Domingo</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+    <ion-label>Dia de término</ion-label>
+    <ion-select value="Dia de Término" okText="Aceptar" cancelText="Atrás" [(ngModel)]="servicioForm.diaTermino">
+        <ion-select-option value="1">Lunes</ion-select-option>
+        <ion-select-option value="2">Martes</ion-select-option>
+        <ion-select-option value="3">Miercoles</ion-select-option>
+        <ion-select-option value="4">Jueves</ion-select-option>
+        <ion-select-option value="5">Viernes</ion-select-option>
+        <ion-select-option value="6">Sabado</ion-select-option>
+        <ion-select-option value="7">Domingo</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hora de inicio</ion-label>
+      <ion-select value="Hora de inicio" okText="Aceptar" cancelText="Atrás"  [(ngModel)]="servicioForm.horaInicio">
+        <ion-select-option value="1">01:00 AM</ion-select-option>
+        <ion-select-option value="2">02:00 AM</ion-select-option>
+        <ion-select-option value="3">03:00 AM</ion-select-option>
+        <ion-select-option value="4">04:00 AM</ion-select-option>
+        <ion-select-option value="5">05:00 AM</ion-select-option>
+        <ion-select-option value="6">06:00 AM</ion-select-option>
+        <ion-select-option value="7">07:00 AM</ion-select-option>
+        <ion-select-option value="8">08:00 AM</ion-select-option>
+        <ion-select-option value="9">09:00 AM</ion-select-option>
+        <ion-select-option value="10">10:00 AM</ion-select-option>
+        <ion-select-option value="11">11:00 AM</ion-select-option>
+        <ion-select-option value="12">12:00 M</ion-select-option>
+        <ion-select-option value="13">01:00 PM</ion-select-option>
+        <ion-select-option value="14">02:00 PM</ion-select-option>
+        <ion-select-option value="15">03:00 PM</ion-select-option>
+        <ion-select-option value="16">04:00 PM</ion-select-option>
+        <ion-select-option value="17">05:00 PM</ion-select-option>
+        <ion-select-option value="18">06:00 PM</ion-select-option>
+        <ion-select-option value="19">07:00 PM</ion-select-option>
+        <ion-select-option value="20">08:00 PM</ion-select-option>
+        <ion-select-option value="21">09:00 PM</ion-select-option>
+        <ion-select-option value="22">10:00 PM</ion-select-option>
+        <ion-select-option value="23">11:00 PM</ion-select-option>
+        <ion-select-option value="24">12:00 AM</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hora de término</ion-label>
+      <ion-select value="Hora de término" okText="Aceptar" cancelText="Atrás"  [(ngModel)]="servicioForm.horaTermino">
+        <ion-select-option value="1">01:00 AM</ion-select-option>
+        <ion-select-option value="2">02:00 AM</ion-select-option>
+        <ion-select-option value="3">03:00 AM</ion-select-option>
+        <ion-select-option value="4">04:00 AM</ion-select-option>
+        <ion-select-option value="5">05:00 AM</ion-select-option>
+        <ion-select-option value="6">06:00 AM</ion-select-option>
+        <ion-select-option value="7">07:00 AM</ion-select-option>
+        <ion-select-option value="8">08:00 AM</ion-select-option>
+        <ion-select-option value="9">09:00 AM</ion-select-option>
+        <ion-select-option value="10">10:00 AM</ion-select-option>
+        <ion-select-option value="11">11:00 AM</ion-select-option>
+        <ion-select-option value="12">12:00 M</ion-select-option>
+        <ion-select-option value="13">01:00 PM</ion-select-option>
+        <ion-select-option value="14">02:00 PM</ion-select-option>
+        <ion-select-option value="15">03:00 PM</ion-select-option>
+        <ion-select-option value="16">04:00 PM</ion-select-option>
+        <ion-select-option value="17">05:00 PM</ion-select-option>
+        <ion-select-option value="18">06:00 PM</ion-select-option>
+        <ion-select-option value="19">07:00 PM</ion-select-option>
+        <ion-select-option value="20">08:00 PM</ion-select-option>
+        <ion-select-option value="21">09:00 PM</ion-select-option>
+        <ion-select-option value="22">10:00 PM</ion-select-option>
+        <ion-select-option value="23">11:00 PM</ion-select-option>
+        <ion-select-option value="24">12:00 AM</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="tel" required [(ngModel)]="servicioForm.precio"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Latitud</ion-label>
+      <ion-input type="tel" required [(ngModel)]="servicioForm.lat"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Longitud</ion-label>
+      <ion-input type="tel" required [(ngModel)]="servicioForm.lon"></ion-input>
+    </ion-item>
+    <!-- <ion-item lines="full">
+      <ion-label position="floating">Foto de Servicio</ion-label><br>
+      <ion-input type="file" required [(ngModel)]="servicioForm.foto"></ion-input>
+    </ion-item> -->
+    <ion-item>
+      <div class="input-group">
+        <div class="input-group-prepend">
+            <span  class="input-group-text upload"   id="btnUpload">Selecciona tu foto principal</span>
+        </div>
+        <div class="custom-file">
+            <form action="/api/upload" method="POST" enctype="multipart/form-data">
+                <ion-input (change)="fileChange($event)"  type="file"  required class="custom-file-input"  id="inputGroupFile01"  aria-describedby="inputGroupFileAddon01"> </ion-input>
+            </form>
+
+        </div>
+    </div>
+
+    </ion-item>
+    
+    <p class="ion-text-center">
+      <ion-button color="secondary" (click)="upload()">Ingresar Servicio</ion-button>
+    </p>
+    
+  </ion-card>
+</ion-content>

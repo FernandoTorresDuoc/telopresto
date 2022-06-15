@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
+
 // Configs 
 
 
@@ -18,7 +19,7 @@ import { AppComponent } from './app.component';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, CommonModule ],
   providers: [ 
-    {provide: RouteReuseStrategy , useClass: IonicRouteStrategy }, 
+    {provide: RouteReuseStrategy , useClass: IonicRouteStrategy },
     //{ provide: AuthServiceConfig,
     //useFactory: getAuthServiceConfigs}
   ],

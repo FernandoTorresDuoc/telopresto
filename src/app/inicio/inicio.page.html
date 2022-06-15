@@ -3,8 +3,9 @@
     <ion-title>inicio</ion-title>
     <ion-buttons slot="start" >
       <ion-back-button defaultHref="/" color="primary" mode="md">
-    </ion-back-button>
+      </ion-back-button>
     </ion-buttons>
+    <ion-button slot="end" class="ion-margin" (click)="arrendarServicio()">Arrendar!</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -22,8 +23,9 @@
               <h2>{{marker.categoria}}</h2>
               <p>{{marker.descripcion}}</p><br>
               <p class="colorTest"><b>Valor: ${{marker.precio}}</b></p>
-              <!-- <p ><b>Hora inicio: {{marker.hora_ini}}</b></p>
-              <p ><b>Hora ter: {{marker.hora_ter}}</b></p> -->
+              <p ><b>Disponible de {{marker.dia_ini}} a {{marker.dia_ter}}</b></p>
+              <p ><b>Desde las : {{marker.hora_ini}}</b></p>
+              <p ><b>Hasta las : {{marker.hora_ter}}</b></p>
             </ion-label>
           </ion-item>
         </ion-card>

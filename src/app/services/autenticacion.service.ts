@@ -13,13 +13,17 @@ import { Foto } from '../interfaces/foto';
 })
 export class AutenticacionService {
 
+  markers: Marker[] = [
+    
+  ];
+
   constructor(private http: HttpClient,  public alertController:AlertController, public navController: NavController) { }
 
   rutaBase: string = 'http://localhost:3001/';
   // rutaBase: string = 'http://34.125.116.134:3001/';
   public usuarioAuth : string;
   public claveAuth : string;
-  
+  public idUsuarioLogueado: number;
   public mail: string='';
   public codigoOtp: string='';
   public slideSeleccionada :number = 0;
@@ -37,7 +41,10 @@ export class AutenticacionService {
   //     return auth;
   //    }));
   //   }
-
+  // uploadFile(id_servicio, file, primario){
+  //   let urlApi = this.rutaBase + 'insertarFoto/';
+  //   return this.http.post(urlApi, {id_servicio, file, primario});
+  // }
   validarLogin(usuario, contrasena) {
     return this.http.get<Usuario>(this.rutaBase + 'validarUsuario/run=' + usuario + '&pass=' + contrasena);
     }
@@ -80,5 +87,16 @@ export class AutenticacionService {
 
   obtenerImagenPrimaria(idServicio){
     return this.http.post(this.rutaBase+'consultarFotoPrimaria/',{idServicio})
+  }
+  crearServicio(categoria, descripcion, direccion, diaIni, diaTer, horaIni, horaTer, precioIn, latitud, longitud, idUsuario, idComuna){
+    return this.http.post(this.rutaBase + 'crearServicio/', {categoria, descripcion, direccion, diaIni, diaTer, horaIni, horaTer, precioIn, latitud, longitud, idUsuario, idComuna})
+  }
+
+  uploadFile(formData, ) {
+    let urlAPI = 'http://localhost:3001/api/upload';
+     return this.http.post(urlAPI, formData );
+  }
+  insertarFoto(id_servicio, foto, primario, size){
+    return this.http.post(this.rutaBase + 'insertarFoto/', {id_servicio, foto, primario, size} )
   }
 }

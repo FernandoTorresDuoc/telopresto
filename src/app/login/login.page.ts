@@ -37,21 +37,35 @@ export class LoginPage implements OnInit {
       this.presentToast('Debe ingresar un usuario y una contraseña.');
     } else{
       this.Autenticacion.validarLogin(usuario, contrasena).subscribe( data =>{
-        // console.log(data);
-        // console.log(data.id_usuario)
-        //console.log(data[0].rol)
         if (data[0] ==null){
           this.presentToast('Las credenciales son incorrectas, por favor reintente');
         }
         else{
           if(data[0].id_usuario > 0 && data[0].rol == "Arrendatario"){
-
+            this.Autenticacion.idUsuarioLogueado = data[0].id_usuario;
+            console.log( data[0].id_usuario);
             this.presentToast('Bienvenido!');
+            //Almacenando información de usuario en Storage
+            localStorage.setItem('userLogged',data[0].id_usuario);
+            localStorage.setItem('pri_nom',data[0].pri_nom);
+            localStorage.setItem('seg_nom',data[0].seg_nom);
+            localStorage.setItem('pri_ap',data[0].pri_ap);
+            localStorage.setItem('seg_ap',data[0].seg_ap);
+            localStorage.setItem('rut',data[0].rut);
+            localStorage.setItem('rol',data[0].rol);
             this.navController.navigateRoot(['inicio']);
           }else if (data[0].id_usuario > 0 && data[0].rol == "Arrendador"){
+            this.Autenticacion.idUsuarioLogueado = data[0].id_usuario;
+            console.log( data[0].id_usuario);
             this.presentToast('Bienvenido!');
             this.navController.navigateRoot(['inicio-arrendador']);
-  
+            localStorage.setItem('userLogged',data[0].id_usuario);
+            localStorage.setItem('pri_nom',data[0].pri_nom);
+            localStorage.setItem('seg_nom',data[0].seg_nom);
+            localStorage.setItem('pri_ap',data[0].pri_ap);
+            localStorage.setItem('seg_ap',data[0].seg_ap);
+            localStorage.setItem('rut',data[0].rut);
+            localStorage.setItem('rol',data[0].rol);
           }else if(data[0].id_usuario === null ){
             console.log('Login nok')
           }

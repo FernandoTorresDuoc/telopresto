@@ -1,11 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="ion-padding">Inicio</ion-title>
-    <ion-menu-button slot="start"></ion-menu-button>
+
+    <ion-menu-button slot="start" >
+      
+
+
+    </ion-menu-button>
+    
     <ion-buttons slot="start" >
+
       <ion-back-button defaultHref="/" color="primary" mode="md">
-    </ion-back-button>
+      </ion-back-button>
     </ion-buttons>
+    <ion-button slot="end" class="ion-margin" (click)="arrendarServicio()">Arrendar!</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -16,14 +24,16 @@
         <ion-card>
           <ion-item>
             <ion-thumbnail slot="start">
-              <img src="assets\img\TeloPrestoLogo.png">
+              <!-- <img src="assets\img\TeloPrestoLogo.png"> -->
+              <img button src="{{marker.foto}} " id="trigger-button" (click)="openModal()">
             </ion-thumbnail>
             <ion-label class="ion-text-wrap">              
               <h2>{{marker.categoria}}</h2>
               <p>{{marker.descripcion}}</p><br>
               <p class="colorTest"><b>Valor: ${{marker.precio}}</b></p>
-              <p ><b>Hora inicio: {{marker.hora_ini}}</b></p>
-              <p ><b>Hora ter: {{marker.hora_ter}}</b></p>
+              <p ><b>Disponible de {{marker.dia_ini}} a {{marker.dia_ter}}</b></p>
+              <p ><b>Desde las : {{marker.hora_ini}}</b></p>
+              <p ><b>Hasta las : {{marker.hora_ter}}</b></p>
             </ion-label>
           </ion-item>
         </ion-card>
