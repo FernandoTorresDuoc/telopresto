@@ -29,9 +29,11 @@ export class ModalArrendatarioComponent implements OnInit {
                }
 
   ngOnInit() {
-   this.recuperarUsuario(this.WebSocketService.idArrendatario);
+   this.recuperarUsuario(this.WebSocketService.idArrendador);
    this.recuperarServicio(this.WebSocketService.idServicio);
    this.loadMap();
+  //  console.log(this.WebSocketService.idArrendatario);
+   
   }
 
 
@@ -40,6 +42,7 @@ export class ModalArrendatarioComponent implements OnInit {
       'dismissed': true
     });
   }
+
   recuperarUsuario(idUsuario){
     this.autenticationService.getUsuario(idUsuario).subscribe(data=>{
       for(let elemento in data){

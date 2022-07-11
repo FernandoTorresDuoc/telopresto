@@ -105,6 +105,10 @@ export class AutenticacionService {
     return this.http.post(this.rutaBase + 'crearTransaccion/', {monto, idServicio, idusuario} )
   }
 
+  cambiarEstadoTransaccion(letra, id_transaccion){
+    return this.http.post(this.rutaBase + 'cambiarEstadoTransaccion/',{letra, id_transaccion})
+  }
+
   getUsuario(idUsuario){
     return this.http.post<Usuario>(this.rutaBase + 'getUsuario/', {idUsuario})
   }

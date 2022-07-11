@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-padding">Servicio aceptado</ion-title>
+      <ion-buttons slot="start" >
+        <ion-icon name="arrow-back" (click)="close()" class="modal" color="primary" style="width: 30px;height:30px"></ion-icon>
+   </ion-buttons>
+
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Nombre Usuario: {{usuario.pri_nom}} {{usuario.seg_nom}} {{usuario.pri_ap}} {{usuario.seg_ap}}</ion-card-subtitle>
+      <ion-card-title>{{servicio.descripcion}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-content>
+      El cliente se encuentra en camino, recuerda confirmar su identidad en el momento de su llegada
+    </ion-card-content>
+  </ion-card>
+  <div id="map" class="ion-margin-center"></div>
+  <div style="text-align: center;">
+    <ion-button class="ion-margin" color="warning" (click)="iniciarServicio()" [disabled]="isDisableI">Iniciar Servicio</ion-button>
+  </div>
+  <div style="text-align: center;">
+    <ion-button class="ion-margin" color="danger" (click)="terminarServicio()" [disabled]="isDisableT">Detener Servicio</ion-button>
+  </div>
+  
+  <!-- <div class="mt-1 container">
+    <div class="form-group mt-4">
+      <div *ngFor="let entry of entries">
+        <span *ngIf="getElapsedTime(entry) as elapsed">
+          <h1>{{elapsed.minutes}} : {{elapsed.seconds}}</h1>
+        </span>
+      </div>
+    </div>
+  </div> -->
+
+
+  <ion-item class="ion-margin" *ngIf="mostrarTiempo">
+  <!-- <ion-item > -->
+    <ion-label>Tiempo contando...</ion-label>
+  </ion-item>
+
+</ion-content>
