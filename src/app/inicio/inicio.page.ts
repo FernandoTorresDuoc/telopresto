@@ -5,6 +5,10 @@ import { Marker } from '../interfaces/marker';
 import { AutenticacionService } from '../services/autenticacion.service';
 import { ModalController } from '@ionic/angular'
 import { ModalComponentComponent } from '../modal-component/modal-component.component';
+import { Socket } from 'ngx-socket-io';
+import { WebsocketService } from '../services/websocket.service';
+import { IonLoaderService } from '../services/ion-loader.service';
+import { ModalArrendatarioComponent } from '../modal-arrendatario/modal-arrendatario.component';
 
 declare var google;
 
@@ -20,6 +24,7 @@ export class InicioPage implements OnInit {
 
   // listaServicios: Marker[] =[];
   // marker2: Marker;
+  ocultarEnviarMail:boolean;
   currentSlide: number = 0;
   marker = 0;
   mapRef = null;
@@ -33,7 +38,10 @@ export class InicioPage implements OnInit {
     private toastController: ToastController,
     private router: Router,
     private Autenticacion:AutenticacionService,
-    private ModalController:ModalController) { 
+    private ModalController:ModalController,
+    private WebSocketService: WebsocketService,
+    private IonLoaderService:IonLoaderService
+    ) { 
     this.infoWindowRef = new google.maps.InfoWindow();
     
   }
@@ -41,9 +49,43 @@ export class InicioPage implements OnInit {
   ngOnInit() {
     this.loadMap();
     this.obtenerServicios();
+    /*this.socket.connect();
+    let name =`User-${new Date().getTime()}`;
+    this.currentUser = localStorage.getItem('userLogged');
+    this.socket.emit('set-name', localStorage.getItem('userLogged'));
+    this.socket.fromEvent('users-changed').subscribe(data =>{
+      console.log('datos:',data);
+    }
+    )*/
+  }
+
+  enviarMensaje(){
+    this.WebSocketService.message = `arrendar;${localStorage.getItem('userLogged')};${this.Autenticacion.slideSeleccionada};${this.Autenticacion.idUsuarioArrendador}`
+    this.WebSocketService.sendMessage();
     
   }
-  
+  arrendar(){
+      this.WebSocketService.message = `arrendar;${localStorage.getItem('userLogged')};${this.Autenticacion.slideSeleccionada};${this.Autenticacion.idUsuarioArrendador}`
+      this.WebSocketService.arrendar();      
+      this.IonLoaderService.simpleLoader();
+    }
+
+  arrendarServicio(){
+    this.markers = [];
+    this.Autenticacion.obtenerServicios().subscribe(data =>{
+      for(let elemento in data){
+        // console.log(data);
+        let numero: number;
+        numero = data[elemento].id_servicio;
+        this.markers.push(data[elemento]);
+        this.Autenticacion.markers = this.markers;
+        this.router.navigate(['arriendo-arrendatario'])
+    }}, err =>{
+      this.presentAlert('Ups!','Algo salió mal :(')
+    })
+    
+  }
+
   async loadMap() {
     const loading = await this.loadingCtrl.create();
     await loading.present();
@@ -128,6 +170,9 @@ export class InicioPage implements OnInit {
     const marker = this.markers[this.currentSlide];
     this.Autenticacion.slideSeleccionada = marker.id_servicio;
     console.log('Id de servicio-->', this.Autenticacion.slideSeleccionada)
+    this.Autenticacion.idUsuarioArrendador = marker.id_usuario;
+    console.log('ID usuario arrendador-->', this.Autenticacion.idUsuarioArrendador);
+    
     this.mapRef.panTo({lat: marker.latitud, lng: marker.longitud});
     
     const markerObj = marker.markerObj;
@@ -163,6 +208,16 @@ export class InicioPage implements OnInit {
     await modal.present();
   }
 
+  async openModalArrendatario(){
+
+    const modal = await this.ModalController.create({
+
+      component: ModalArrendatarioComponent
+    });
+
+    await modal.present();
+  }
+
   async presentAlert(subtitulo, message) {
 
     const alert = await this.alertController.create({
@@ -184,4 +239,8 @@ export class InicioPage implements OnInit {
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
+
+
+
+
 }

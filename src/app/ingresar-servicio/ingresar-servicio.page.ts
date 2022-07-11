@@ -157,6 +157,7 @@ async presentToastWithOptions(header, message) {
     message: message,
     icon: 'information-circle',
     position: 'top',
+    duration:4000,
     buttons: [
      {
         text: 'Aceptar',

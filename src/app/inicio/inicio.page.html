@@ -5,7 +5,7 @@
       <ion-back-button defaultHref="/" color="primary" mode="md">
       </ion-back-button>
     </ion-buttons>
-    <ion-button slot="end" class="ion-margin" (click)="arrendarServicio()">Arrendar!</ion-button>
+    <ion-button slot="end" class="ion-margin" (click)="arrendar()">Arrendar!</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -19,6 +19,7 @@
               <!-- <img src="assets\img\TeloPrestoLogo.png"> -->
               <img button src="{{marker.foto}} " id="trigger-button" (click)="openModal()">
             </ion-thumbnail>
+            
             <ion-label class="ion-text-wrap">              
               <h2>{{marker.categoria}}</h2>
               <p>{{marker.descripcion}}</p><br>

@@ -7,6 +7,7 @@ import { Usuario } from '../interfaces/usuario';
 import { Comuna } from '../interfaces/comuna';
 import { Marker } from '../interfaces/marker';
 import { Foto } from '../interfaces/foto';
+import { Servicio } from '../interfaces/servicio';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,8 @@ export class AutenticacionService {
   public mail: string='';
   public codigoOtp: string='';
   public slideSeleccionada :number = 0;
-
-  
+  public idUsuarioArrendador: number;
+  public marker:Marker;
 
   // validarLogin(usuario, contrasena) {
   //   return this.http.get<Usuario>(this.rutaBase + 'validarUsuario/run=' + usuario + '&pass=' + contrasena)
@@ -99,4 +100,20 @@ export class AutenticacionService {
   insertarFoto(id_servicio, foto, primario, size){
     return this.http.post(this.rutaBase + 'insertarFoto/', {id_servicio, foto, primario, size} )
   }
+
+  crearTransaccion(monto, idServicio, idusuario){
+    return this.http.post(this.rutaBase + 'crearTransaccion/', {monto, idServicio, idusuario} )
+  }
+
+  getUsuario(idUsuario){
+    return this.http.post<Usuario>(this.rutaBase + 'getUsuario/', {idUsuario})
+  }
+
+  recuperarServicio(idServicio){
+    return this.http.post<Servicio>(this.rutaBase + 'recuperarServicio/', {idServicio})
+  }
+
+
 }
+
+

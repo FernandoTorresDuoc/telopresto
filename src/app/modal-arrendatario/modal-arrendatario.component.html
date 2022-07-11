@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-padding">Dirígete a la ubicación</ion-title>
+      <ion-buttons slot="start" >
+        <ion-icon name="arrow-back" (click)="close()" class="modal" color="primary" style="width: 30px;height:30px"></ion-icon>
+   </ion-buttons>
+
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{usuario.pri_nom}} {{usuario.seg_nom}} {{usuario.pri_ap}} {{usuario.seg_ap}}</ion-card-subtitle>
+      <ion-card-title>{{servicio.descripcion}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-item>
+      <ion-icon name="navigate-outline" slot="start"></ion-icon>
+      <ion-label>{{servicio.direccion}} , {{servicio.nom_comuna}}</ion-label>
+      <ion-button fill="outline" slot="end">View</ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+      Dirígete al servicio dentro de los próximos 5 minutos, en caso de que no logres llegar, se cancelará la operación automáticamente.
+    </ion-card-content>
+  </ion-card>
+  <div id="map" class="ion-margin-center"></div>
+
+
+</ion-content>

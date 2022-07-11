@@ -102,6 +102,15 @@ const routes: Routes = [
     path: 'servicios-arrendador',
     loadChildren: () => import('./servicios-arrendador/servicios-arrendador.module').then( m => m.ServiciosArrendadorPageModule)
   },
+  {
+    path: 'arriendo-arrendatario',
+    loadChildren: () => import('./arriendo-arrendatario/arriendo-arrendatario.module').then( m => m.ArriendoArrendatarioPageModule)
+  },
+  {
+    path: 'ingresar-servicio',
+    loadChildren: () => import('./ingresar-servicio/ingresar-servicio.module').then( m => m.IngresarServicioPageModule)
+  },
+
   // {
   //   path: 'tab1',
   //   loadChildren: () => import('./tab1/tab1.module').then(m => m.Tab1PageModule)

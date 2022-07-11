@@ -5,6 +5,7 @@ import { Marker } from '../interfaces/marker';
 import { AutenticacionService } from '../services/autenticacion.service';
 import { ModalController } from '@ionic/angular'
 import { ModalComponentComponent } from '../modal-component/modal-component.component';
+import { WebsocketService } from '../services/websocket.service';
 
 declare var google;
 
@@ -14,7 +15,8 @@ declare var google;
   styleUrls: ['./inicio-arrendador.page.scss'],
 })
 export class InicioArrendadorPage implements OnInit {
-  
+
+
   @ViewChild(IonSlides) slides: IonSlides;
 
   currentSlide: number = 0;
@@ -32,19 +34,45 @@ export class InicioArrendadorPage implements OnInit {
     private loadingCtrl: LoadingController,
     private Autenticacion:AutenticacionService,
     private toastController: ToastController,
-    private ModalController:ModalController) {
+    private ModalController:ModalController,
+    private WebSocketService : WebsocketService) {
     this.infoWindowRef = new google.maps.InfoWindow();
+
    }
 
   ngOnInit() {
     this.loadMap();
     this.obtenerServicios();
+    
+    this.WebSocketService.sendMessage();
+        /*this.socket.connect();
+    let name =`User-${new Date().getTime()}`;
+    this.currentUser = name;
+    this.socket.emit('set-name', localStorage.getItem('userLogged'));
+    this.socket.fromEvent('users-changed').subscribe(data =>{
+      console.log('datos:',data);
+    }
+    )*/
   }
 
   openCustom() {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
   }
+  
+  enviarMensaje(){
+    this.WebSocketService.message = 'Probando la mensajeria'
+    this.WebSocketService.sendMessage();
+    
+  }
+
+  getUsuario(idUsuario){
+    this.Autenticacion.getUsuario(idUsuario).subscribe(data=>{
+      console.log(data);
+      
+    });
+  }
+
 
   arrendarServicio(){
     this.markers = [];
@@ -68,6 +96,8 @@ export class InicioArrendadorPage implements OnInit {
     //const marker = this.markers[0];
     const mapEle: HTMLElement = document.getElementById('map');
     const marker = this.markers[0];
+    this.Autenticacion.marker = this.markers[0];
+    this.Autenticacion.slideSeleccionada = this.markers[0].id_servicio;
     this.mapRef = new google.maps.Map(mapEle, {
       //center: {lat: marker.lat, lng: marker.lng},
       //zoom: 15
@@ -141,6 +171,7 @@ export class InicioArrendadorPage implements OnInit {
     // console.log(this.markers[currentSlide]);
     const marker = this.markers[this.currentSlide];
     this.Autenticacion.slideSeleccionada = marker.id_servicio;
+    this.Autenticacion.marker = marker;
     console.log('Id de servicio-->', this.Autenticacion.slideSeleccionada)
     this.mapRef.panTo({lat: marker.latitud, lng: marker.longitud});
     
@@ -154,6 +185,7 @@ export class InicioArrendadorPage implements OnInit {
   obtenerServicios(){
     // console.log('hola');
     // console.log(this.listaServicios);
+
     this.Autenticacion.obtenerServicios().subscribe(data=>{
       for(let elemento in data){
         // console.log(data);
